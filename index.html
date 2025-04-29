@@ -144,7 +144,7 @@
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
 
-            if(username === 'user' && password === 'pass') {
+            if(username.toLower() === 'user' && password.toLower() === 'pass') {
                 window.location.href = 'features.html';
             } else {
                 errorMessage.style.display = 'block';
