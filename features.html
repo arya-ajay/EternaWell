@@ -116,7 +116,22 @@
             transform: scale(1.02);
             transition: 0.1s ease-in-out;
         }
-
+        .service-card-dash {
+            background: rgb(176, 195, 255);
+            padding: 2rem;
+            display: flex;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            align-items: center;
+            justify-content: center;
+        }
+        .service-card-dash:hover{
+            background-color: #3f3f3f;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(1.02);
+            transition: 0.1s ease-in-out;
+        }
         .service-icon {
             font-size: 2.5rem;
             color: var(--primary-blue);
@@ -189,6 +204,10 @@
                 <h2>Speed Ambulance</h2>
                 <p>One-tap ambulance access with real-time location tracking</p>
             </div>
+            <div class="service-card-dash" onclick="window.location.href='dashboard.html'">
+                <h2>GoTo Dashboard</h2>
+            </div>
+            
         </div>
     </div>
 
