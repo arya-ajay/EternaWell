@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EternaWell Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --secondary-blue: #3b82f6;
+            --accent-red: #ef4444;
+            --background: #f0f4f8;
+            --text-dark: #1e293b;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text-dark);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: 0.3s;
+            font-weight: 500;
+            border-radius: 8px;
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .sos-button {
+            background: var(--accent-red);
+            border-radius: 8px;
+            padding: 0.5rem !important;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Main Content */
+        .container {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Health Stats */
+        .health-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin: 0.5rem 0;
+        }
+
+        /* Blood Network Section */
+        .section-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .donor-list {
+            display: grid;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .donor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 8px;
+            background: var(--background);
+        }
+
+        /* Medicine Section */
+        .medicine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .medicine-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .medicine-name {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 0.5rem 0;
+        }
+
+        .order-button {
+            background: var(--secondary-blue);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .order-button:hover {
+            background: var(--primary-blue);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="EternaWell Logo">
+            EternaWell
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="window.location.href='features.html'">Features</button>
+            <button class="nav-button sos-button" onclick="activateSOS()">
+                <i class="fas fa-bell"></i>
+                SOS
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Health Stats -->
+        <div class="health-stats">
+            <div class="stat-card">
+                <h3><i class="fas fa-walking"></i> Steps</h3>
+                <p class="stat-value">8,532</p>
+                <small>Today's steps</small>
+            </div>
+            <div class="stat-card">
+                <h3><i class="fas fa-heart"></i> Heart Rate</h3>
+                <p class="stat-value">72 BPM</p>
+                <small>Current rate</small>
+            </div>
+            <div class="stat-card">
+                <h3><i class="fas fa-pills"></i> Medicine Reminder</h3>
+                <p class="stat-value">Metformin</p>
+                <small>Due in 1 hour</small>
+            </div>
+        </div>
+
+        <!-- Blood Network Section -->
+        <div class="section-card">
+            <h2 class="section-title"><i class="fas fa-tint"></i> Nearby Blood Donors</h2>
+            <div class="donor-list">
+                <div class="donor-item">
+                    <div>John Doe (O+)</div>
+                    <div>1.2 km away</div>
+                </div>
+                <div class="donor-item">
+                    <div>Jane Smith (A+)</div>
+                    <div>0.8 km away</div>
+                </div>
+                <div class="donor-item">
+                    <div>Mike Johnson (B+)</div>
+                    <div>2.1 km away</div>
+                </div>
+            </div>
+            <button class="order-button" onclick="requestBlood()">
+                Request Blood
+            </button>
+        </div>
+
+        <!-- Medicine Section -->
+        <div class="section-card">
+            <h2 class="section-title"><i class="fas fa-prescription-bottle"></i> Available Medicines</h2>
+            <div class="medicine-grid">
+                <div class="medicine-card">
+                    <h4 class="medicine-name">Paracetamol</h4>
+                    <p>₹15/Strip</p>
+                    <button class="order-button" onclick="orderMedicine('Paracetamol')">
+                        Order Now
+                    </button>
+                </div>
+                <div class="medicine-card">
+                    <h4 class="medicine-name">Metformin</h4>
+                    <p>₹45/Strip</p>
+                    <button class="order-button" onclick="orderMedicine('Metformin')">
+                        Order Now
+                    </button>
+                </div>
+                <div class="medicine-card">
+                    <h4 class="medicine-name">Amoxicillin</h4>
+                    <p>₹60/Strip</p>
+                    <button class="order-button" onclick="orderMedicine('Amoxicillin')">
+                        Order Now
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ambulance Section -->
+        <div class="section-card">
+            <h2 class="section-title"><i class="fas fa-ambulance"></i> Emergency Ambulance</h2>
+            <p>Nearest hospital: 3.2 km away</p>
+            <button class="order-button" style="margin-top: 1.5rem;" onclick="callAmbulance()">
+                Call Ambulance Now
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // SOS Button Alert
+            function activateSOS() {
+                alert('Emergency SOS Activated! Help is on the way.');
+                navigator.geolocation.getCurrentPosition(position => {
+                    console.log('Emergency location:', position.coords);
+                });
+            }
+
+            // Blood Request Alert
+            function requestBlood() {
+                alert('Blood request sent to nearby donors! Our team will contact you shortly.');
+            }
+
+            // Medicine Order Alerts
+            function orderMedicine(medicineName) {
+                alert(`Order placed for ${medicineName}! It will be delivered within 2 hours.`);
+            }
+
+            // Ambulance Call Alert
+            function callAmbulance() {
+                const distance = document.querySelector('.section-card:last-child p').innerText.match(/\d+\.\d+/)[0];
+                alert(`Ambulance dispatched! Estimated arrival time: ${Math.round(distance * 2)} minutes`);
+            }
+    </script>
+</body>
+</html>
